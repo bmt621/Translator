@@ -7,7 +7,7 @@ class DataProcessor:
     def __init__(self,save_to=None):
         self.saved_to = save_to
     
-    def write_to_json(self,data_set):
+    def write_to_json(self,data_set,src_lang,trg_lang):
 
         data_x = data_set[0]
         data_y = data_set[1]
@@ -16,7 +16,7 @@ class DataProcessor:
             for id , (ger, eng) in enumerate(zip(data_x,data_y)):
                 json_dic = {
                             'id':id,
-                            'translation':{'en':eng,'ger':ger}
+                            'translation':{src_lang:eng,trg_lang:ger}
                         }
 
                 outfile.write(json.dumps(json_dic))
